@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { Container, AppBar, Typography, Grow, Grid } from "@mui/material";
+import { Container, Grow, Grid } from "@mui/material";
 import { useDispatch } from "react-redux";
 
 import {getPosts } from "./actions/posts";
@@ -20,13 +20,16 @@ const App = () => {
 
   return (
     <Container maxWidth="lg"> 
-      <AppBar className={styles.appBar} position="static" color="inherit">
+      {/* <AppBar className={styles.appBar} position="static" color="inherit">
         <Typography className={styles.heading} variant="h2" align="center">
           Memories
         </Typography>
         <img className={styles.image} src={memories} alt="memoris" height="60" />
-      </AppBar>
-      
+      </AppBar> */}
+      <div className={styles.appBar}>
+        <h2 className={styles.heading}>Memories</h2>
+        <img className={styles.image} src={memories} alt="memoris" height="60" />
+      </div>
       <Grow in>
         <Container>
           <Grid
