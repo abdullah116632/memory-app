@@ -7,11 +7,11 @@
   margin: 30px 0;
 } */
 
-.appBar{
+.appBar {
   height: 80px;
   width: 100%;
   background-color: whitesmoke;
-  display: flex; 
+  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -38,4 +38,10 @@
 
 .image {
   margin-left: 20px;
+}
+
+@media (max-width: 400px) {
+  .mainContainer {
+    flex-direction: column-reverse;
+  }
 }
