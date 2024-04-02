@@ -7,8 +7,6 @@ import styles from "./posts.module.css";
 
 const Posts = ({setCurrentId}) => {
   const posts = useSelector((state) => state.posts);
-
-  console.log(posts)
   
   return (
    !posts.length ? <CircularProgress /> : (

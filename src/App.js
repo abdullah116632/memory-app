@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from "react";
-import { Container, Grow, Grid } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Container, Grow, Grid} from "@mui/material";
 import { useDispatch } from "react-redux";
 
-import {getPosts } from "./actions/posts";
+import { getPosts } from "./actions/posts";
 
 import Posts from "./components/Posts/Posts";
 import Form from "./components/Form/Form";
@@ -10,16 +10,15 @@ import memories from "./images/memories.png";
 import styles from "./styles.module.css";
 
 const App = () => {
-  
   const [currentId, setCurrentId] = useState(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getPosts());
-  }, [dispatch, currentId])
+  }, [dispatch, currentId]);
 
   return (
-    <Container maxWidth="lg"> 
+    <Container maxWidth="lg">
       {/* <AppBar className={styles.appBar} position="static" color="inherit">
         <Typography className={styles.heading} variant="h2" align="center">
           Memories
@@ -28,7 +27,12 @@ const App = () => {
       </AppBar> */}
       <div className={styles.appBar}>
         <h2 className={styles.heading}>Memories</h2>
-        <img className={styles.image} src={memories} alt="memoris" height="60" />
+        <img
+          className={styles.image}
+          src={memories}
+          alt="memoris"
+          height="60"
+        />
       </div>
       <Grow in>
         <Container>

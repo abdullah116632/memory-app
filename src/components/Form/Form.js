@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
 import styles from "./form.module.css";
 import { TextField, Button, Typography, Paper } from "@mui/material";
-import FileBase from "react-file-base64";
+// import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
 
 import { createPost, updatePost } from "../../actions/posts";
 
 
 const Form = ({currentId, setCurrentId}) => {
+  
   const [postData, setPostDAta] = useState({
     creator: "",
     title: "",
     message: "",
     tags: "",
-    selectedFile: "",
+    image: null,
   });
 
   const post = useSelector((state) => currentId ? state.posts.find((p) => p._id ===currentId) : null);
@@ -26,10 +27,18 @@ const Form = ({currentId, setCurrentId}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const formDataToSend = new FormData()
+
+    formDataToSend.append("creator", postData.creator)
+    formDataToSend.append("title", postData.title)
+    formDataToSend.append("message", postData.message)
+    formDataToSend.append("tags", postData.tags)
+    formDataToSend.append("image", postData.image)
+
     if(currentId){
-      dispatch(updatePost(currentId, postData))
+      dispatch(updatePost(currentId, formDataToSend))
     }else{
-      dispatch(createPost(postData));
+      dispatch(createPost(formDataToSend));
     }
     clear();
   };
@@ -37,11 +46,11 @@ const Form = ({currentId, setCurrentId}) => {
   const clear = () => {
     setCurrentId(null);
     setPostDAta({
-      creator: "",
+    creator: "",
     title: "",
     message: "",
     tags: "",
-    selectedFile: "",
+    selectedFile: null,
     })
   };
 
@@ -91,12 +100,13 @@ const Form = ({currentId, setCurrentId}) => {
           onChange={(e) => setPostDAta({ ...postData, tags: e.target.value.split(",") })}
         />
         <div className={styles["fileInput"]}>
-          <FileBase
+          {/* <FileBase
             type="file"
             multiple={false}
             onDone={({ base64 }) => setPostDAta({ ...postData, selectedFile: base64 })
             }
-          />
+          /> */}
+          <input type="file" name="image" id="image" accept="image/*" onChange={(e) => setPostDAta({...postData, image: e.target.files[0]})}/>
         </div>
         <Button
           className={styles.buttononSubmit}
@@ -104,6 +114,7 @@ const Form = ({currentId, setCurrentId}) => {
           color="primary"
           size="large"
           type="submit"
+          onClick={handleSubmit}
           fullWidth
         >
           Submit
