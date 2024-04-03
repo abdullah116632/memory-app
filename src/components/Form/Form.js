@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./form.module.css";
 import { TextField, Button, Typography, Paper } from "@mui/material";
-// import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
 
 import { createPost, updatePost } from "../../actions/posts";
@@ -17,7 +16,7 @@ const Form = ({currentId, setCurrentId}) => {
     image: null,
   });
 
-  const post = useSelector((state) => currentId ? state.posts.find((p) => p._id ===currentId) : null);
+  const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null);
   const dispatch = useDispatch();
 
   useEffect(() => {

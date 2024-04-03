@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import DeleteIcon from "@mui/icons-material/Delete";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import EditIcon from '@mui/icons-material/Edit';
 import styles from "./post.module.css";
 import moment from "moment";
 import { useDispatch } from "react-redux";
@@ -37,7 +37,7 @@ const Post = ({ post, setCurrentId }) => {
             style={{ color: "white" }} 
             size="small" 
             onClick={() => {setCurrentId(post._id)}}>
-            <MoreHorizIcon fontSize="default" />
+            <EditIcon fontSize="default" />
         </Button>
       </div>
       <div className={styles.details}>
