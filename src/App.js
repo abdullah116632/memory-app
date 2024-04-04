@@ -1,58 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { Container, Grow, Grid} from "@mui/material";
-import { useDispatch } from "react-redux";
+import React from "react";
+import { Container} from "@mui/material";
 
-import { getPosts } from "./actions/posts";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Posts from "./components/Posts/Posts";
-import Form from "./components/Form/Form";
-import memories from "./images/memories.png";
-import styles from "./styles.module.css";
+import Navbar from "./components/Navbar/Navbar";
+import Home from "./components/Home/Home";
+import Auth from "./components/Auth/Auth";
+
+
 
 const App = () => {
-  const [currentId, setCurrentId] = useState(null);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [dispatch, currentId]);
-
   return (
+    <BrowserRouter>
     <Container maxWidth="lg">
-      {/* <AppBar className={styles.appBar} position="static" color="inherit">
-        <Typography className={styles.heading} variant="h2" align="center">
-          Memories
-        </Typography>
-        <img className={styles.image} src={memories} alt="memoris" height="60" />
-      </AppBar> */}
-      <div className={styles.appBar}>
-        <h2 className={styles.heading}>Memories</h2>
-        <img
-          className={styles.image}
-          src={memories}
-          alt="memoris"
-          height="60"
-        />
-      </div>
-      <Grow in>
-        <Container>
-          <Grid
-            container
-            className={styles.mainContainer}
-            justify="space-between"
-            alignItems="stretch"
-            spacing={3}
-          >
-            <Grid item xs={12} sm={7}>
-              <Posts setCurrentId={setCurrentId} />
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <Form currentId={currentId} setCurrentId={setCurrentId} />
-            </Grid>
-          </Grid>
-        </Container>
-      </Grow>
+      <Navbar />
+      <Routes>
+        <Route path="/" exact Component={Home}/>
+        <Route path="/auth" exact Component={Auth}/>
+      </Routes>
     </Container>
+    </BrowserRouter>
   );
 };
 

@@ -1,0 +1,14 @@
+.avatar{
+    background-color: rebeccapurple;
+}
+
+.paper{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button{
+    margin-top: 1rem;
+}
